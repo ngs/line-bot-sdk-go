@@ -16,16 +16,24 @@ package linebot
 
 // Emoji type
 type Emoji struct {
-	Index     int    `json:"index"`
-	Length    int    `json:"length,omitempty"`
+	Index     *int   `json:"index,omitempty"`
+	Length    *int   `json:"length,omitempty"`
 	ProductID string `json:"productId,omitempty"`
 	EmojiID   string `json:"emojiId,omitempty"`
 }
 
 // NewEmoji function
-func NewEmoji(index int, productID, emojiID string) *Emoji {
+func NewEmoji(productID, emojiID string) *Emoji {
 	return &Emoji{
-		Index:     index,
+		ProductID: productID,
+		EmojiID:   emojiID,
+	}
+}
+
+// NewEmojiAt function
+func NewEmojiAt(index int, productID, emojiID string) *Emoji {
+	return &Emoji{
+		Index:     &index,
 		ProductID: productID,
 		EmojiID:   emojiID,
 	}

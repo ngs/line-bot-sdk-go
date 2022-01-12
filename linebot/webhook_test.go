@@ -1143,7 +1143,7 @@ var webhookTestWantEvents = []*Event{
 			ID:   "325708",
 			Text: "Hello, world! (love)",
 			Emojis: []*Emoji{
-				{Index: 14, Length: 6, ProductID: "5ac1bfd5040ab15980c9b435", EmojiID: "001"},
+				{Index: &[]int{14}[0], Length: &[]int{6}[0], ProductID: "5ac1bfd5040ab15980c9b435", EmojiID: "001"},
 			},
 		},
 	},

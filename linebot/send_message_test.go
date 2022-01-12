@@ -1412,8 +1412,23 @@ func TestBroadcastMessages(t *testing.T) {
 			// A text message with emojis
 			Messages: []SendingMessage{
 				NewTextMessage("$ Look at this: $ It's a LINE emoji!").AddEmoji(
-					NewEmoji(0, "5ac1bfd5040ab15980c9b435", "086")).AddEmoji(
-					NewEmoji(14, "5ac1bfd5040ab15980c9b435", "001"),
+					NewEmoji("5ac1bfd5040ab15980c9b435", "086")).AddEmoji(
+					NewEmoji("5ac1bfd5040ab15980c9b435", "001"),
+				),
+			},
+			ResponseCode: 200,
+			Response:     []byte(`{}`),
+			Want: want{
+				RequestBody: []byte(`{"messages":[{"type":"text","text":"$ Look at this: $ It's a LINE emoji!","emojis":[{"productId":"5ac1bfd5040ab15980c9b435","emojiId":"086"},{"productId":"5ac1bfd5040ab15980c9b435","emojiId":"001"}]}]}` + "\n"),
+				Response:    &BasicResponse{},
+			},
+		},
+		{
+			// A text message with emojis
+			Messages: []SendingMessage{
+				NewTextMessage("$ Look at this: $ It's a LINE emoji!").AddEmoji(
+					NewEmojiAt(0, "5ac1bfd5040ab15980c9b435", "086")).AddEmoji(
+					NewEmojiAt(14, "5ac1bfd5040ab15980c9b435", "001"),
 				),
 			},
 			ResponseCode: 200,
